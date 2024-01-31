@@ -1,0 +1,9 @@
+<div class="mainContainer" >
+    
+    <div *ngIf="signInMode && (accountService.currentUser$ |async) === null">
+        <app-register></app-register>
+    </div>
+    <div *ngIf="(!signInMode)">
+        <app-item-list></app-item-list>
+    </div>
+</div>

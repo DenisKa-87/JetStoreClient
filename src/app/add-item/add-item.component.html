@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Item details: </h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+    <div *appHasRole="['Admin','Employee']" class="modal-body">
+        <form [formGroup]="editForm">
+            <div class="formgroup">
+                <a style="font-weight: bolder;">Name: </a>
+                <input formControlName="Name" type="text" placeholder={{item.Name}}>
+            </div>
+            <a style="font-weight: bolder;">Price: </a>
+            <input formControlName="Price" type="number" placeholder={{item.Price}}>
+            <a style="font-weight: bolder;">Category: </a>
+            <select formControlName="CategoryId" class="form-control ml-1" placeholder="Category">
+                <option style="color: grey;" *ngFor="let category of categories" [value]="category.Id">
+                    {{category.Name}}</option>
+            </select>
+            <a style="font-weight: bolder;">Quantity: </a>
+            <input formControlName="Quantity" type="number" placeholder={{item.Price}}>
+            <a style="font-weight: bolder;">Measure unit: </a>
+            <select formControlName="UnitId" class="form-control ml-1" placeholder="Measure unit">
+                <option style="color: grey;" *ngFor="let unit of measureUnits" [value]="unit.Id">
+                    {{unit.Name}}</option>
+            </select>
+            <a style="font-weight: bolder;">Description: </a>
+            <input formControlName="Description" type="text area" placeholder="{{item.Description}}">
+            <a style="font-weight: bolder;">Image Url: </a>
+            <input formControlName="ImageUrl" type="text area" placeholder="">
+            <button  type="submit" class="btn btn-sm btn-success " form="editForm" (click)="editForm.valid && addRecord()">Save changes</button>
+        </form>
+    </div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

@@ -1,0 +1,11 @@
+.outletWrapper{
+    margin-top: 8vh;
+    --contentHeight: auto;
+    
+}
+.footerWrapper{
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: calc(var(--contentHeight) + 10vh);
+}

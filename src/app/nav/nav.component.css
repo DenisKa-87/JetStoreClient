@@ -1,0 +1,19 @@
+.dropdown-toggle, .dropdown-item{
+    cursor: pointer;
+    color: black;
+}
+
+img {
+    max-height: 10vh;
+    border: 2px solid white;
+    display: inline;
+}
+
+a{
+    color: whitesmoke;
+}
+
+.navbar{
+    background-image: linear-gradient(to bottom, rgb(1, 1, 71), rgb(85, 85, 213));
+    height: 8vh;
+}

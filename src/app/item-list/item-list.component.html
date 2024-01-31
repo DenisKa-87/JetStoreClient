@@ -1,0 +1,53 @@
+<div class="mainContainer text-white">
+    <div class="container mb-3 mt-3 d-flex justify-content-center ">
+        <form #form="ngForm" (ngSubmit)="getItems()">
+            <div class="row justify-content-center ">
+                <div class="col-sm-12 col-md-3 form-group mx-3">
+                    <h5>Category: </h5>
+                    <select name="CategoryId" [(ngModel)]="itemsParams.categoryId" class="form-control ml-1">
+                        <option style="color: grey;" [value]="-1">All</option>
+                        <option style="color: grey;" *ngFor="let category of categories" [value]="category.categoryId">
+                            {{category.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-3 form-group mx-3">
+                    <h5>Sort by: </h5>
+                    <select name="Order" [(ngModel)]="itemsParams.Order" class="form-control ml-1">
+                        <option style="color: grey;" *ngFor="let value of sortingList" [value]="value.value">
+                            {{value.display}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-2 form-group mx-3">
+                    <h5>Price from: </h5>
+                    <input class="form-control ml-1" name="MinPrice" [(ngModel)]="itemsParams.MinPrice">
+                </div>
+                <div class="col-sm-12 col-md-2 form-group mx-3">
+                    <h5>Price to: </h5>
+                    <input class="form-control ml-1" name="MaxPrice" [(ngModel)]="itemsParams.MaxPrice">
+                </div>
+            </div>
+            <div class="row justify-content-center ">
+                <button class="col-sm-12 col-md-4 btn btn-success  m-3  " type="submit">Aply Filters</button>
+            </div>
+        </form>
+    </div>
+    <h3 class="mt-1">List of chosen items: </h3>
+    <div class="itemList mt-5 text-black ">
+        <ul *ngFor="let item of items">
+            <li>
+                <div class="card" style="width: 12 rem;">
+                    <img src="{{item.ImageUrl || './assets/placeholder.jpg'}}" class="card-img-top " style="max-height: 200px; max-width: 200px" alt={{item.Name}}>
+                    <div class="card ">
+                      <h5 class="card-title">{{item.Name}}</h5>
+                    </div>
+                    <div class="card-body z-3 ">
+                        <p class="card-text ">Price: {{item.Price}}</p>
+                        <a *ngIf="(accountService.currentUser | async)"  class="btn btn-primary">Add to cart</a>
+                        <a class="m-2" style="text-decoration: underline;" (click)="editItem(item)">View details</a>
+                    </div>
+                  </div>
+                  
+            </li>
+        </ul>
+    </div>
+</div>

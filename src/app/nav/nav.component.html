@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md  fixed-top">
+    <div class="container" style="min-width: 90vw">
+  
+      <a class="navbar-brand" routerLink="/" routerLinkActive="active">Jet Store</a>
+      <ul class="navbar-nav me-auto mb-2 mb-md-0"  dropdown>
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <li *appHasRole='["Customer"]' class="nav-item">
+            <a class="nav-link " aria-current="page" routerLink="/" routerLinkActive="active">My Orders</a>
+          </li>
+          <li *appHasRole='["Admin", "Employee"]'  class="nav-item">
+            <a class="nav-link" routerLinkActive="active" (click)="addItem()">Add item</a>
+          </li>
+          <li *appHasRole='["Admin", "Employee"]' class="nav-item">
+            <a class="nav-link" routerLink="admin" routerLinkActive="active">Admin panel</a>
+          </li>
+        </ng-container>
+      </ul>
+      <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <a class="dropdown-toggle text-light ml-2" dropdownToggle data-toggle="dropdown">Welcome, {{user.Name  | titlecase}}!</a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="dropdown-item" routerLink="/member/edit" class="dropdown-item">Edit profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </div>
+  
+      <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+        <input name="email" [(ngModel)]="model.email" class="form-control me-2" type="text" placeholder="Email">
+        <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password"
+          placeholder="Password">
+        <button class="btn btn-success mr-" type="submit">Login</button>
+        <a class="regiter" style="margin-left: 1rem; text-align: center;" (click)="this.modes.registerModeOn()">Sign in!</a>
+      </form>
+    </div>
+  </nav>

@@ -1,0 +1,49 @@
+.itemList{
+    width: 70vw;
+    border-radius: 50px;
+    background-color: whitesmoke;
+    border: solid 1px grey;
+    height: 60vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+@media (max-width: 800px){
+    .itemList{
+        width: 90vw;
+        height: 60vh;
+    }
+}
+
+.itemList li:hover{
+    background-color: bisque;
+}
+.mainContainer{
+    justify-content: flex-start;
+}
+ul{
+    list-style: none;
+    padding: 0px;
+}
+li{
+    text-align: center;
+    margin: 0px;
+    padding: 1rem;
+}
+
+#total{
+    text-shadow: 1px 1px 5px #ccc;;
+}
+
+a{
+    cursor: pointer;
+}
+
